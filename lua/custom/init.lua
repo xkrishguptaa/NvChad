@@ -15,6 +15,11 @@ autocmd("VimResized", {
   command = "tabdo wincmd =",
 })
 
-autocmd({ "VimEnter"}, { callback = open_nvim_terminal })
-autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+autocmd({ "VimEnter"}, {
+    callback = function ()
+        -- logic: If terminal opens first, it'll always open on the right side.
+        open_nvim_terminal()
+        open_nvim_tree()
+    end
+})
 
